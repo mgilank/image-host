@@ -12,7 +12,7 @@ if (preg_match('#^/([\w\d]+)\.(jpg|jpeg|png)$#i', $requestUri, $matches)) {
     $year = date("Y");
     $month = date("m");
     $day = date("d");
-    $originalPath = "/file/$year/$month/$day/" . $filename . '.' . $extension;
+    $originalPath = "file/$year/$month/$day/" . $filename . '.' . $extension;
 
     // Cek apakah file ada di path yang ditentukan
     if (file_exists(__DIR__ . $originalPath)) {
@@ -27,6 +27,8 @@ if (preg_match('#^/([\w\d]+)\.(jpg|jpeg|png)$#i', $requestUri, $matches)) {
                 break;
         }
         // Kirim konten file
+        $img_info = getimagesize($originalPath);
+        header('Content-type: ' . $img_info['mime']);
         readfile(__DIR__ . $originalPath);
         exit;
     } else {
