@@ -16,7 +16,7 @@
 <body class="bg-gray-100 dark:bg-gray-800 flex justify-center h-screen transition-colors duration-300 ">
     <!-- Theme Toggle Icon in the top right corner -->
     <button id="theme-toggle" class="absolute top-2 right-2 text-indigo-600 dark:text-indigo-300 hover:text-indigo-800 dark:hover:text-indigo-400 focus:outline-none">
-        <i id="theme-icon" class="text-2xl w-5 h-5"></i>
+        <i id="theme-icon" class="text-2xl"></i>
 
     </button>
     <div id="upload-container" class="p-10 w-[28rem]">
