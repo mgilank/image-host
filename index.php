@@ -121,7 +121,9 @@
             function getMainDomain(url) {
                 try {
                     const parsedUrl = new URL(url); // Parse the URL
-                    return parsedUrl.hostname; // Return the hostname (domain)
+                    const domain = parsedUrl.hostname; // Get the hostname (domain)
+                    const protocol = parsedUrl.protocol; // Get the protocol (http: or https:)
+                    return `${protocol}//${domain}`; // Return the protocol and domain
                 } catch (error) {
                     console.error("Invalid URL:", error);
                     return null; // Return null if the URL is invalid
