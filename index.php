@@ -27,7 +27,7 @@
             <h1 class="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-gray-700 via-blue-800  text-transparent bg-clip-text ">Upload Image </h1>
         </a>
         <form id="upload-form" action="up.php" method="POST" enctype="multipart/form-data" class="space-y-4">
-            <div id="drop-zone" class="p-10 max-w-md flex items-center justify-center h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-md text-gray-500 dark:text-gray-300 cursor-pointer transition hover:bg-gray-50 dark:hover:bg-gray-700">
+            <div id="drop-zone" class="p-10 max-w-md flex items-center justify-center text-center h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-md text-gray-500 dark:text-gray-300 cursor-pointer transition hover:bg-gray-50 dark:hover:bg-gray-700">
                 <span>Drag & Drop or Click to Select File ⚡</span>
             </div>
             <input type="file" name="file" id="file-input" class="hidden" accept="image/*" />
