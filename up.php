@@ -59,7 +59,8 @@ function uploadFile($file)
         
         return [
             'success' => true,
-            'url' => $fileUrl
+            'url' => $fileUrl,
+            'filename' => $fileName . '.' . $extension,
         ];
     } else {
         return ['success' => false, 'message' => 'Failed to move uploaded file.'];

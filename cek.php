@@ -1,45 +1,56 @@
 <?php
-// Get the request URI, e.g., "/b6c46df.png"
+$filename = $_GET['filename'];
 
-// Cek apakah URL sesuai dengan pola "/filename.ext" di mana ext adalah jpg, jpeg, atau png
-// if (preg_match('#^/([\w\d]+)\.(jpg|jpeg|png)$#i', $requestUri, $matches)) {
-//     // Ambil nama file dan ekstensi dari hasil regex
-//     $filename = $matches[1];
-//     $extension = $matches[2];
+// Define the base directory
+$baseDir = 'file/';
 
-//     // Tentukan path dinamis untuk file (misalnya, menggunakan tanggal hari ini)
-//     $year = date("Y");
-//     $month = date("m");
-//     $day = date("d");
-//     $originalPath = "file/$year/$month/$day/" . $filename . '.' . $extension;
+// Initialize a flag to indicate if the file is found
+$fileFound = false;
 
-//     // Cek apakah file ada di path yang ditentukan
-//     if (file_exists(__DIR__ . $originalPath)) {
-//         // Tentukan header Content-Type sesuai ekstensi
-//         switch ($extension) {
-//             case 'jpg':
-//             case 'jpeg':
-//                 header('Content-Type: image/jpeg');
-//                 break;
-//             case 'png':
-//                 header('Content-Type: image/png');
-//                 break;
-//         }
-//         // Kirim konten file
-//         $img_info = getimagesize($originalPath);
-//         header('Content-type: ' . $img_info['mime']);
-//         readfile(__DIR__ . $originalPath);
-//         exit;
-//     } else {
-//         // Jika file tidak ditemukan, tampilkan 404
-//         http_response_code(404);
-//         echo "File not found";
-//         exit;
-//     }
-// }
+// Extract the file extension and base name
+$fileInfo = pathinfo($filename);
+$baseName = $fileInfo['filename']; // Get the name without the extension
+$extension = strtolower($fileInfo['extension']); // Get the extension and convert to lowercase
 
+// Validate the base name to ensure it is exactly 7 alphanumeric characters
+if (!preg_match('/^[a-zA-Z0-9]{7}$/', $baseName)) {
+    header("HTTP/1.0 400 Bad Request");
+    echo "Invalid filename oi";
+    exit;
+}
 
-// Jika URL tidak sesuai pola, tampilkan pesan default atau halaman 404
-// http_response_code(404);
-// echo "Invalid URL";
+// Create an array of allowed file extensions
+$allowedExtensions = ['jpg', 'jpeg', 'png'];
+
+// Check if the extension is allowed
+if (!in_array($extension, $allowedExtensions)) {
+    header("HTTP/1.0 400 Bad Request");
+    echo "Invalid file extension oi";
+    exit;
+}
+
+// Use recursive directory iterator to search for the file
+$iterator = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator($baseDir)
+);
+
+// Loop through the files
+foreach ($iterator as $file) {
+    if ($file->isFile()) {
+        // Check if the filename matches and if the extension is allowed
+        if ($file->getFilename() === $filename) {
+            // File found
+            $fileFound = true;
+            header('Content-Type: image/' . $extension); // Set the correct content type
+            readfile($file->getPathname()); // Serve the file
+            exit;
+        }
+    }
+}
+
+// If the file was not found, return a 404 response
+if (!$fileFound) {
+    header("HTTP/1.0 404 Not Found");
+    echo "ndak ketemu";
+}
 ?>

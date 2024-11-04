@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload with Theme Switch</title>
+    <title>IPIC is FUN - by Jetorbit</title>
     <link href="output.css" rel="stylesheet">
 </head>
 
@@ -21,10 +21,12 @@
 
     </button>
     <div id="upload-container" class="p-10 w-[28rem]">
-        <h2 class="text-2xl font-semibold mb-4 text-center text-black dark:text-gray-200">Upload File</h2>
+        <a href="/">
+            <h1 class="text-2xl font-semibold mb-4 text-center text-black dark:text-gray-200">Upload File</h1>
+        </a>
         <form id="upload-form" action="up.php" method="POST" enctype="multipart/form-data" class="space-y-4">
             <div id="drop-zone" class="p-10 max-w-md flex items-center justify-center h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-md text-gray-500 dark:text-gray-300 cursor-pointer transition hover:bg-gray-50 dark:hover:bg-gray-700">
-                <span>Drag & Drop or Click to Select File</span>
+                <span>Drag & Drop or Click to Select File ⚡</span>
             </div>
             <input type="file" name="file" id="file-input" class="hidden" accept="image/*" />
         </form>
@@ -116,6 +118,18 @@
                 messageDiv.style.color = isError ? 'red' : 'green';
             };
 
+            function getMainDomain(url) {
+                try {
+                    const parsedUrl = new URL(url); // Parse the URL
+                    return parsedUrl.hostname; // Return the hostname (domain)
+                } catch (error) {
+                    console.error("Invalid URL:", error);
+                    return null; // Return null if the URL is invalid
+                }
+            }
+            const currentUrl = window.location.href;
+            const mainDomain = getMainDomain(currentUrl);
+
             const submitForm = (file) => {
                 const formData = new FormData();
                 formData.append('file', file);
@@ -128,7 +142,7 @@
                         if (data.success) {
                             thumbnail.src = data.url;
                             thumbnailLink.href = data.url; // Set link to the file URL
-                            fileUrlInput.value = data.url;
+                            fileUrlInput.value = `${mainDomain}/f/${data.filename}`;
                             thumbnail.classList.remove('hidden');
                             resultDiv.classList.remove('hidden');
                             showMessage('File uploaded successfully!', false);

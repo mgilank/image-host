@@ -1,9 +1,5 @@
-# BEGIN WordPress
-
+# Enable mod_rewrite
 RewriteEngine On
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-RewriteBase /
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+
+# Rewrite requests for /f/filename to a PHP script
+RewriteRule ^f/(.*)$ /cek.php?filename=$1 [L,QSA]
