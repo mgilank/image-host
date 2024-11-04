@@ -147,7 +147,7 @@
                     .then(data => {
                         if (data.success) {
                             thumbnail.src = data.url;
-                            thumbnailLink.href = data.url; // Set link to the file URL
+                            thumbnailLink.href = `${mainDomain}/f/${data.filename}`;
                             fileUrlInput.value = `${mainDomain}/f/${data.filename}`;
                             thumbnail.classList.remove('hidden');
                             resultDiv.classList.remove('hidden');
