@@ -55,7 +55,7 @@ function uploadFile($file)
     // Move uploaded file to final destination
     if (move_uploaded_file($file['tmp_name'], $fullPath)) {
         // Construct the URL to access the file
-        $fileUrl = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/file/' . $year . '/' . $month . '/' . $day . '/' . $fileName . '.' . $extension;
+        $fileUrl = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . 'file/' . $year . '/' . $month . '/' . $day . '/' . $fileName . '.' . $extension;
         
         return [
             'success' => true,
