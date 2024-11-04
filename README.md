@@ -5,9 +5,10 @@ Stack :
 - Tailwind
 - JS
 
-It will auto create /file/ folder
-PR are welcome!
-
+How to
  - Clone this repo
  - run #npm install
  - Just use it immediately
+
+Next improvement will be : 
+- multi image drag/upload
