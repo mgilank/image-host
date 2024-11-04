@@ -1,5 +1,5 @@
 <?php
-// include 'cek.php';
+include 'cek.php';
 ?>
 
 <!DOCTYPE html>
