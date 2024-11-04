@@ -48,7 +48,9 @@
                 <button id="copy-btn" class="mt-2 w-full py-2 px-4 bg-indigo-600 dark:bg-indigo-500 text-white rounded-md hover:bg-indigo-700 dark:hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">Copy URL</button>
             </div>
         </div>
-        <div id="message" class="mt-4 text-center text-red-500 hidden"></div>
+
+        <div id="message" class="mt-4 text-sm text-center text-red-500 hidden transition-opacity duration-1000 ease-out "></div>
+        <div id="CopyMsg" class="mt-4 text-sm text-center text-sky-700 dark:text-yellow-400 hidden transition-opacity duration-1000 ease-out "></div>
 
     </div>
 
@@ -114,13 +116,37 @@
             const fileUrlInput = document.getElementById('file-url');
             const copyBtn = document.getElementById('copy-btn');
             const messageDiv = document.getElementById('message');
+            const copyMessage = document.getElementById('CopyMsg');
+
+            const fadeOutMessage = (element) => {
+                element.classList.add('opacity-0');
+                setTimeout(() => {
+                    element.classList.add('hidden');
+                    element.classList.remove('opacity-0');
+                }, 500); // Ensure hidden after fade-out duration
+            };
 
             const showMessage = (message, isError = false) => {
                 messageDiv.textContent = message;
                 messageDiv.classList.toggle('hidden', !message);
                 messageDiv.classList.toggle('text-red-500', isError);
                 messageDiv.classList.toggle('text-green-500', !isError);
+
+                if (message) {
+                    setTimeout(() => fadeOutMessage(messageDiv), 1500);
+                }
             };
+
+            const showCopyMsg = (message, isError = false) => {
+                copyMessage.textContent = message;
+                copyMessage.classList.toggle('hidden', !message);
+                copyMessage.classList.toggle('block', message);
+                
+                if (message) {
+                    setTimeout(() => fadeOutMessage(copyMessage), 1500);
+                }
+            };
+
 
             function getMainDomain(url) {
                 try {
@@ -185,7 +211,7 @@
             copyBtn.addEventListener('click', () => {
                 fileUrlInput.select();
                 document.execCommand('copy');
-                showMessage('URL copied to clipboard!', false);
+                showCopyMsg('URL copied to clipboard!', false);
             });
         });
     </script>
