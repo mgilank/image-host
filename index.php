@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPIC is FUN - by Jetorbit</title>
-    <link href="styles.css?v=<?php echo time(); ?>" rel="stylesheet">
+    <link href="css/styles.css?v=<?php echo time(); ?>" rel="stylesheet">
     <link rel="icon" href="fav.png" type="image/x-icon">
 
 </head>
