@@ -1,11 +1,5 @@
-<?php
-// include 'cek.php';
-?>
-
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,18 +11,18 @@
 
 <body class="bg-gray-100 dark:bg-gray-800  justify-center h-screen transition-colors duration-300 ">
     <!-- Theme Toggle Icon in the top right corner -->
-    <button id="theme-toggle" class="absolute top-2 right-2 text-sky-600 dark:text-sky-300 ">
-        <i id="theme-icon" class="text-2xl block w-5 h-5">
+    <button id="theme-toggle" class="absolute top-2 right-2 text-gray-600 dark:text-gray-400 p-2 rounded-full border-gray-300 border dark:border-gray-500 dark:hover:bg-gray-500 hover:bg-gray-300 text-center justify-center">
+        <i id="theme-icon" class="text-2xl block">
         </i>
 
     </button>
     <div id="upload-container" class="p-10 md:w-[28rem] m-auto">
         <a href="/">
-            <h1 class="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-gray-700 via-blue-800  text-transparent bg-clip-text ">Upload Image </h1>
+            <h1 class="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-gray-700 via-blue-800  text-transparent bg-clip-text dark:text-gray-300">Upload Image </h1>
         </a>
         <form id="upload-form" action="up.php" method="POST" enctype="multipart/form-data" class="space-y-4">
             <div id="drop-zone" class="p-10 max-w-md flex items-center justify-center text-center h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-md text-gray-500 dark:text-gray-300 cursor-pointer transition hover:bg-gray-50 dark:hover:bg-gray-700">
-                <span>Drag & Drop or Click to Select File ⚡</span>
+                <span class="text-sm">Drag & Drop or Click to Select File ⚡</span>
             </div>
             <input type="file" name="file" id="file-input" class="hidden" accept="image/*" />
         </form>
@@ -58,8 +52,8 @@
 
     </div>
 
-    <div class="absolute bottom-0 mb-10 left-0 right-0 text-sm text-gray-500 px-4 py-2 italic dark:bg-gray-800 text-center">
-        Dibangun dengan AiLove ❤️ Jetorbit
+    <div class=" bottom-0  left-0 right-0 text-xs text-gray-500 dark:text-gray-400 px-4 py-2 text-center">
+        <span class="italic">Built with AiLove</span> ❤️  <span class="italic">using <a href="https://www.jetorbit.com" title="Cloud VPS">Jetorbit</a></span>
     </div>
 
 
@@ -124,7 +118,8 @@
             const showMessage = (message, isError = false) => {
                 messageDiv.textContent = message;
                 messageDiv.classList.toggle('hidden', !message);
-                messageDiv.style.color = isError ? 'red' : 'green';
+                messageDiv.classList.toggle('text-red-500', isError);
+                messageDiv.classList.toggle('text-green-500', !isError);
             };
 
             function getMainDomain(url) {
