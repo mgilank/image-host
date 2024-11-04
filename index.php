@@ -13,16 +13,16 @@
     <link href="output.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-800 flex justify-center h-screen transition-colors duration-300 ">
+<body class="bg-gray-100 dark:bg-gray-800  justify-center h-screen transition-colors duration-300 ">
     <!-- Theme Toggle Icon in the top right corner -->
-    <button id="theme-toggle" class="absolute top-2 right-2 text-indigo-600 dark:text-indigo-300 hover:text-indigo-800 dark:hover:text-indigo-400 focus:outline-none">
+    <button id="theme-toggle" class="absolute top-2 right-2 text-sky-600 dark:text-sky-300 ">
         <i id="theme-icon" class="text-2xl block w-5 h-5">
         </i>
 
     </button>
-    <div id="upload-container" class="p-10 w-[28rem]">
+    <div id="upload-container" class="p-10 md:w-[28rem] m-auto">
         <a href="/">
-            <h1 class="text-2xl font-semibold mb-4 text-center text-black dark:text-gray-200">Upload File</h1>
+            <h1 class="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-gray-700 via-blue-800  text-transparent bg-clip-text ">Upload Image </h1>
         </a>
         <form id="upload-form" action="up.php" method="POST" enctype="multipart/form-data" class="space-y-4">
             <div id="drop-zone" class="p-10 max-w-md flex items-center justify-center h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-md text-gray-500 dark:text-gray-300 cursor-pointer transition hover:bg-gray-50 dark:hover:bg-gray-700">
@@ -53,7 +53,14 @@
             </div>
         </div>
         <div id="message" class="mt-4 text-center text-red-500 hidden"></div>
+
     </div>
+
+    <div class="absolute bottom-0 mb-10 left-0 right-0 text-sm text-gray-500 px-4 py-2 italic dark:bg-gray-800 text-center">
+        Dibangun dengan AiLove ❤️ Jetorbit
+    </div>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
