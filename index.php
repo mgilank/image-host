@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPIC is FUN - by Jetorbit</title>
     <link href="output.css" rel="stylesheet">
+    <link rel="icon" href="fav.png" type="image/x-icon">
+
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-800  justify-center h-screen transition-colors duration-300 ">
