@@ -1,7 +1,7 @@
 **Simple Image Hosting**
 -
 Stack :
-- PHP (Yeah)
+- PHP (Yeah) 🤘🏻
 - Tailwind
 - JS
 
