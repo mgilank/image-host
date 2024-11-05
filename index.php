@@ -124,7 +124,7 @@
             const mainDomain = getMainDomain(window.location.href);
 
             const submitForm = (files) => {
-                Array.from(files).forEach(file => {
+                Array.from(files).forEach((file, index) => {
                     const formData = new FormData();
                     formData.append('file', file);
 
@@ -136,9 +136,18 @@
                         .then(dataArray => {
                             dataArray.forEach(data => {
                                 if (data.success) {
-                                    // Create the complete result component for each file
+                                    // Determine the ID based on the number of files
+                                    const isSingleFile = files.length === 1;
                                     const fileComponent = document.createElement('div');
                                     fileComponent.classList.add('mt-4', 'max-w-md');
+
+                                    // If single file, use a different ID
+                                    if (isSingleFile) {
+                                        fileComponent.classList.add('w-full', 'm-auto');
+                                    } else {
+                                        fileComponent.id = `result-${index}`;
+                                        fileComponent.classList.add('w-full', 'm-auto');
+                                    }
 
                                     // Create the thumbnail link and image
                                     const thumbnailLink = document.createElement('a');
@@ -167,9 +176,9 @@
                                     const iconContainer = document.createElement('div');
                                     iconContainer.classList.add('bg-gray-200', 'p-2', 'rounded-l-md', 'dark:bg-gray-600', 'content-center');
                                     iconContainer.innerHTML = `
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                        </svg>`;
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                    </svg>`;
                                     flexContainer.appendChild(iconContainer);
 
                                     const inputContainer = document.createElement('div');
@@ -236,11 +245,6 @@
                 }
             });
 
-            copyBtn.addEventListener('click', () => {
-                fileUrlInput.select();
-                document.execCommand('copy');
-                showCopyMsg('URL copied to clipboard!', false);
-            });
         });
     </script>
 </body>
