@@ -55,8 +55,8 @@ function uploadFile($file)
     // Move uploaded file to final destination
     if (move_uploaded_file($file['tmp_name'], $fullPath)) {
         // Construct the URL to access the file
-        $fileUrl = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . 'file/' . $year . '/' . $month . '/' . $day . '/' . $fileName . '.' . $extension;
-        
+        $fileUrl = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/file/' . $year . '/' . $month . '/' . $day . '/' . $fileName . '.' . $extension;
+
         return [
             'success' => true,
             'url' => $fileUrl,
@@ -70,8 +70,26 @@ function uploadFile($file)
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
-    $result = uploadFile($_FILES['file']);
-    echo json_encode($result);
-}
+    $results = [];
 
-?>
+    // Check if multiple files were uploaded
+    if (is_array($_FILES['file']['name'])) {
+        // Multiple files uploaded
+        foreach ($_FILES['file']['name'] as $index => $name) {
+            $file = [
+                'name' => $_FILES['file']['name'][$index],
+                'type' => $_FILES['file']['type'][$index],
+                'tmp_name' => $_FILES['file']['tmp_name'][$index],
+                'error' => $_FILES['file']['error'][$index],
+                'size' => $_FILES['file']['size'][$index]
+            ];
+
+            $results[] = uploadFile($file);
+        }
+    } else {
+        // Single file uploaded
+        $results[] = uploadFile($_FILES['file']);
+    }
+
+    echo json_encode($results);
+}
