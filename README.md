@@ -11,4 +11,5 @@ How to
  - Just use it immediately
 
 Next improvement will be : 
-- multi image drag/upload
+- Multi image drag/upload
+- Styling like any screenshot "beauty" services. Adding browser mockup, etc.
