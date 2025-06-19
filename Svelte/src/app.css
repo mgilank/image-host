@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.drag-over {
+  /* Use utility classes directly in markup instead of @apply for bg-gray-50 and dark:bg-gray-700 */
+}
+
+/* Transitions */
+.transition-opacity {
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
